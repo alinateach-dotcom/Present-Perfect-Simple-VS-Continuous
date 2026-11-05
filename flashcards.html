@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade 8 English: Present Perfect Simple vs Continuous</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            --card-bg: #ffffff;
+            --card-back-bg: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --accent: #06b6d4;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            color: #f8fafc;
+        }
+
+        .header p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+
+        .filter-container {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #cbd5e1;
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+
+        .card-container {
+            perspective: 1000px;
+            width: 100%;
+            max-width: 580px;
+            height: 340px;
+            cursor: pointer;
+            margin-bottom: 24px;
+        }
+
+        .card-inner {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            position: relative;
+        }
+
+        .card-container.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-front {
+            background: var(--card-bg);
+            color: var(--text-main);
+            border: 2px solid #e2e8f0;
+        }
+
+        .card-back {
+            background: var(--card-back-bg);
+            color: var(--text-main);
+            transform: rotateY(180deg);
+            border: 2px solid #cbd5e1;
+        }
+
+        .card-badge {
+            align-self: flex-start;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 4px 10px;
+            border-radius: 12px;
+            background: #e0e7ff;
+            color: var(--primary);
+        }
+
+        .card-body {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin: 16px 0;
+        }
+
+        .card-front .card-body p {
+            font-size: 1.25rem;
+            font-weight: 600;
+            line-height: 1.5;
+            color: #1e293b;
+        }
+
+        .card-back .card-body {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #334155;
+        }
+
+        .card-back .highlight {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .card-back .example {
+            margin-top: 10px;
+            font-style: italic;
+            color: #475569;
+            background: #f1f5f9;
+            padding: 8px 12px;
+            border-radius: 8px;
+            width: 100%;
+        }
+
+        .card-footer-text {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .btn {
+            background: #ffffff;
+            color: var(--text-main);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            background: #f1f5f9;
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+        }
+
+        .progress {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #cbd5e1;
+            min-width: 100px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Present Perfect Simple vs. Continuous</h1>
+        <p>Grade 8 English — Unit 3: Entertainment & Media</p>
+    </div>
+
+    <div class="filter-container">
+        <button class="filter-btn active" onclick="filterCards('all')">Все карточки</button>
+        <button class="filter-btn" onclick="filterCards('rules')">Правила & Формулы</button>
+        <button class="filter-btn" onclick="filterCards('verbs')">Глаголы СМИ</button>
+        <button class="filter-btn" onclick="filterCards('markers')">Маркеры времени</button>
+    </div>
+
+    <div class="card-container" id="cardContainer" onclick="flipCard()">
+        <div class="card-inner">
+            <div class="card-front">
+                <span class="card-badge" id="cardCategory">Категория</span>
+                <div class="card-body">
+                    <p id="cardFrontText">Вопрос загружается...</p>
+                </div>
+                <div class="card-footer-text">💡 Нажмите, чтобы перевернуть</div>
+            </div>
+            <div class="card-back">
+                <span class="card-badge" id="cardCategoryBack">Ответ</span>
+                <div class="card-body" id="cardBackText">
+                    Ответ загружается...
+                </div>
+                <div class="card-footer-text">💡 Нажмите, чтобы вернуться</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="btn" onclick="prevCard()">← Назад</button>
+        <button class="btn btn-primary" onclick="flipCard()">Перевернуть</button>
+        <button class="btn" onclick="nextCard()">Вперёд →</button>
+        <button class="btn" onclick="shuffleCards()">🔀 Микс</button>
+        <div class="progress" id="progressText">1 / 12</div>
+    </div>
+
+    <script>
+        const allCards = [
+            {
+                category: "rules",
+                catName: "Правила & Формулы",
+                front: "В чём главное отличие Present Perfect Simple от Continuous?",
+                back: "<span class='highlight'>Simple</span> фокусируется на <b>результате</b> или количестве (что сделано).<br><br><span class='highlight'>Continuous</span> фокусируется на <b>длительности</b> или процессе (как долго длится действие)."
+            },
+            {
+                category: "rules",
+                catName: "Правила & Формулы",
+                front: "Как образуется Present Perfect Simple?",
+                back: "<span class='highlight'>have / has + V3 (Past Participle)</span><div class='example'>Пример: She <b>has edited</b> two videos today.</div>"
+            },
+            {
+                category: "rules",
+                catName: "Правила & Формулы",
+                front: "Как образуется Present Perfect Continuous?",
+                back: "<span class='highlight'>have / has + been + V-ing</span><div class='example'>Пример: She <b>has been editing</b> videos all morning.</div>"
+            },
+            {
+                category: "rules",
+                catName: "Правила & Формулы",
+                front: "Можно ли использовать глаголы состояния (know, have, like, believe) в Continuous?",
+                back: "<b>НЕТ!</b> Глаголы состояния употребляются только в <span class='highlight'>Simple</span>.<div class='example'>Правильно: I <b>have known</b> him for 5 years.<br>Неправильно: <s>I have been knowing</s></div>"
+            },
+            {
+                category: "markers",
+                catName: "Маркеры времени",
+                front: "С какой формой употребляются маркеры: for 2 hours, since 9 AM, all day, how long...?",
+                back: "Чаще с <span class='highlight'>Present Perfect Continuous</span>, так как акцент делается на продолжительности процесса.<div class='example'>How long <b>have</b> you <b>been streaming</b>?</div>"
+            },
+            {
+                category: "markers",
+                catName: "Маркеры времени",
+                front: "С какой формой употребляются маркеры: how many times, already, yet, never, three times?",
+                back: "С <span class='highlight'>Present Perfect Simple</span>, так как подчёркивается результат или точное количество.<div class='example'>How many articles <b>have</b> you <b>published</b>?</div>"
+            },
+            {
+                category: "verbs",
+                catName: "Глаголы СМИ",
+                front: "Сравните: <br>1) <i>We have filmed 3 scenes.</i><br>2) <i>We have been filming for 5 hours.</i>",
+                back: "1) <b>have filmed</b> — зафиксирован <i>результат</i> (3 сцены).<br>2) <b>have been filming</b> — подчёркнута <i>длительность</i> (5 часов съёмок)."
+            },
+            {
+                category: "verbs",
+                catName: "Глаголы СМИ",
+                front: "Переведите: «Они транслируют концерт в прямом эфире уже два часа».",
+                back: "<span class='highlight'>They have been streaming the concert live for two hours.</span><div class='example'>Процесс всё ещё продолжается (Continuous).</div>"
+            },
+            {
+                category: "verbs",
+                catName: "Глаголы СМИ",
+                front: "Переведите: «Редактор уже опубликовал новую статью».",
+                back: "<span class='highlight'>The editor has already published the new article.</span><div class='example'>Действие завершено, есть результат (Simple).</div>"
+            },
+            {
+                category: "verbs",
+                catName: "Глаголы СМИ",
+                front: "Сформулируйте вопрос: «Как долго вы репетируете эту сцену?»",
+                back: "<span class='highlight'>How long have you been rehearsing this scene?</span><div class='example'>Вопрос о длительности процесса (Continuous).</div>"
+            },
+            {
+                category: "markers",
+                catName: "Маркеры времени",
+                front: "В чём разница между предлогами FOR и SINCE?",
+                back: "<b>FOR</b> — указываем <i>период времени</i> (for 3 hours, for 2 days).<br><br><b>SINCE</b> — указываем <i>точку старта</i> (since Monday, since 2020)."
+            },
+            {
+                category: "rules",
+                catName: "Правила & Формулы",
+                front: "Какая форма нужна, если видимый результат действия очевиден прямо сейчас?<br><i>(Why are your hands dirty?)</i>",
+                back: "<span class='highlight'>Present Perfect Continuous</span>!<div class='example'>I <b>have been painting</b> the studio set.<br>(Следы работы видны прямо сейчас).</div>"
+            }
+        ];
+
+        let currentCards = [...allCards];
+        let currentIndex = 0;
+        let isFlipped = false;
+
+        function updateCardDisplay() {
+            const container = document.getElementById('cardContainer');
+            container.classList.remove('flipped');
+            isFlipped = false;
+
+            setTimeout(() => {
+                const card = currentCards[currentIndex];
+                document.getElementById('cardCategory').textContent = card.catName;
+                document.getElementById('cardCategoryBack').textContent = card.catName + " — Ответ";
+                document.getElementById('cardFrontText').innerHTML = card.front;
+                document.getElementById('cardBackText').innerHTML = card.back;
+                document.getElementById('progressText').textContent = `${currentIndex + 1} / ${currentCards.length}`;
+            }, 150);
+        }
+
+        function flipCard() {
+            const container = document.getElementById('cardContainer');
+            container.classList.toggle('flipped');
+            isFlipped = !isFlipped;
+        }
+
+        function nextCard() {
+            if (currentIndex < currentCards.length - 1) {
+                currentIndex++;
+            } else {
+                currentIndex = 0;
+            }
+            updateCardDisplay();
+        }
+
+        function prevCard() {
+            if (currentIndex > 0) {
+                currentIndex--;
+            } else {
+                currentIndex = currentCards.length - 1;
+            }
+            updateCardDisplay();
+        }
+
+        function shuffleCards() {
+            for (let i = currentCards.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [currentCards[i], currentCards[j]] = [currentCards[j], currentCards[i]];
+            }
+            currentIndex = 0;
+            updateCardDisplay();
+        }
+
+        function filterCards(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            if (category === 'all') {
+                currentCards = [...allCards];
+            } else {
+                currentCards = allCards.filter(c => c.category === category);
+            }
+            currentIndex = 0;
+            updateCardDisplay();
+        }
+
+        // Клавиатурное управление
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextCard();
+            if (e.key === 'ArrowLeft') prevCard();
+            if (e.key === ' ' || e.key === 'Enter') {
+                e.preventDefault();
+                flipCard();
+            }
+        });
+
+        // Инициализация первой карточки
+        updateCardDisplay();
+    </script>
+</body>
+</html>
